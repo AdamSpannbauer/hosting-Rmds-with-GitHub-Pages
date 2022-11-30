@@ -1,6 +1,6 @@
 ---
 title: "Hosting Rmds with GitHub Pages"
-author: "Me"
+author: "Adam Spannbauer"
 date: "`r Sys.Date()`"
 output: 
   html_document:
@@ -15,6 +15,7 @@ output:
 ```{r message=FALSE}
 library(ggplot2)
 library(plotly)
+library(dplyr)
 ```
 
 # Step-by-step instructions
@@ -42,8 +43,128 @@ library(plotly)
 
 # Make your Rmd more fun!
 
+A lot of what's covered below deals with the "[YAML front matter](https://assemble.io/docs/YAML-front-matter.html)" that appears at the beginning of an .Rmd file.
+
+The YAML used for this document is:
+
+```yaml
+---
+title: "Hosting Rmds with GitHub Pages"
+author: "Adam Spannbauer"
+date: "`r Sys.Date()`"
+output: 
+  html_document:
+    theme: flatly
+    toc: true
+    toc_depth: 2
+    toc_float: true
+    includes:
+      in_header: "favicon.html"
+---
+```
+
+All the contents of the the YAML are either self-explanatory (message me if not!) or they're discussed below. The exception is the usage of `Sys.Date()` in the `date:` field; this will tell the .Rmd file to look up today's date when you click the knit button (ie the date will serve as a "last updated" date).
+
 ## CSS themes
+
+Adding a theme is easy to do and can make documents look snazzy and professional.
+
+### Easy mode (what I do)
+
+Use the below YAML to tell your .Rmd what theme to use.
+
+```yaml
+output: 
+  html_document:
+    theme: flatly
+```
+
+The options you can say other than `flatly` used above are: cerulean, cosmo, cyborg, darkly, flatly, journal, lumen, paper, readable, sandstone, simplex, slate, spacelab, superhero, united, yeti. So many!!!
+
+### CSS knowers and lovers
+
+If you're already in the know about CSS, it's worth noting that you can apply you own style sheet to an Rmd file.  See the [official R Markdown Cookbook here](https://bookdown.org/yihui/rmarkdown-cookbook/html-css.html).
+
+This can be a great option if you really want to work towards unique consistent branding.
 
 ## Table of contents
 
+Again, a table of contents is just a little piece of YAML away.  Below is what this doc uses:
+
+```yaml
+output: 
+  html_document:
+    toc: true
+    toc_depth: 2
+    toc_float: true
+```
+
+* `toc: true` - turn on the table of contents
+* `toc_depth: 2` - the table of contents should include both first and second level headers (ie sections and sub-sections, not sub-sub-sections etc)
+* `toc_float: true` - the table of contents should always appear on the side. Set to `false` and the table of contents will be stuck to the top of the page (ie when users scroll down it will scroll off the top of the page)
+
+See [this section from *R Markdown: The Definitive Guide*](https://bookdown.org/yihui/rmarkdown/html-document.html#table-of-contents) for more options for the table of contents!
+
 ## Favicon
+
+A little icon in the tab of your web browser can go a surprisingly long way in making a site look more professional. This little icon in the browser tab is known as a "favicon".  To add one, I've included the below in my YAML:
+
+```yaml
+output: 
+  html_document:
+    includes:
+      in_header: "favicon.html"
+```
+
+, and then I have [this small html file](https://raw.githubusercontent.com/AdamSpannbauer/hosting-Rmds-with-GitHub-Pages/master/favicon.html) saved as `favicon.html` in the same folder as my .Rmd file.  To change the icon from the little emoji R, you'd change the link to an image you'd like to be a favicon.  They are intended to be small images, so there's a chance you don't use this feature perfectly as intended by web browsers.
+
+## Interactive graphics
+
+Part of the fun of being on the web instead of in a Word or PDF doc is that you can use interactive things in your Rmd!
+
+For example here's a plot made with `ggplot2` and then rendered with `plotly` to add some nice interactivity.
+
+```{r}
+p <- ggplot(mtcars, aes(x = wt, y = mpg)) +
+  geom_point() +
+  labs(
+    x = "Car weight in 1000s of lbs",
+    y = "MPG"
+  )
+
+ggplotly(p)
+```
+
+You can also use `plotly` directly to do some pretty cool things.
+
+Data viz note: Is this the best way to show this data? Prolly not, as always double check the story you want to tell and focus on that. But animations are fun to play with!
+
+```{r message=FALSE, warning=FALSE}
+keep_cities <- c(
+  "Arlington", "Austin", "Dallas",
+  "El Paso", "Fort Worth", "Houston",
+  "Lubbock", "San Antonio"
+)
+
+annual_txhousing <- txhousing %>%
+  filter(city %in% keep_cities) %>%
+  group_by(city, year) %>%
+  summarise(
+    sales = sum(sales),
+    volume = sum(volume)
+  )
+
+plot_ly(
+  annual_txhousing,
+  x = ~ log(sales),
+  y = ~ log(volume),
+  color = ~city,
+  frame = ~year,
+  type = "scatter",
+  mode = "markers"
+) %>%
+  layout(
+    xaxis = list(title = "log(Number of Sales)"),
+    yaxis = list(title = "log(Total value of Sales)")
+  )
+```
