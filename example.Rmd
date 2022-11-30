@@ -12,11 +12,9 @@ output:
       in_header: "favicon.html"
 ---
 
-```{r message=FALSE}
-library(ggplot2)
-library(plotly)
-library(dplyr)
-```
+### Preface
+
+This is just 1 way to host an Rmd document.  There are other options.  This is just intended to show how to do it with GitHub pages, it is not claiming to GitHub pages to be the best route for all cases.
 
 # Step-by-step instructions
 
@@ -42,6 +40,15 @@ library(dplyr)
   * It's published GitHub pages site can is https://adamspannbauer.github.io/hosting-Rmds-with-GitHub-Pages/
 
 # Make your Rmd more fun!
+
+## Outside resources
+
+I cover some things you can do here, but Rmd is a very flexible thing! Pretty much anything you can do in R Markdown could be applied here. See the below online free resources for a very complete overview of what can be done:
+
+* [*R Markdown: The Definitive Guide*](https://bookdown.org/yihui/rmarkdown/)
+* [*R Markdown Cookbook*](https://bookdown.org/yihui/rmarkdown-cookbook/html-css.html)
+
+## What the h*ck is a YAML?
 
 A lot of what's covered below deals with the "[YAML front matter](https://assemble.io/docs/YAML-front-matter.html)" that appears at the beginning of an .Rmd file.
 
@@ -119,6 +126,12 @@ output:
 , and then I have [this small html file](https://raw.githubusercontent.com/AdamSpannbauer/hosting-Rmds-with-GitHub-Pages/master/favicon.html) saved as `favicon.html` in the same folder as my .Rmd file.  To change the icon from the little emoji R, you'd change the link to an image you'd like to be a favicon.  They are intended to be small images, so there's a chance you don't use this feature perfectly as intended by web browsers.
 
 ## Interactive graphics
+
+```{r message=FALSE}
+library(ggplot2)
+library(plotly)
+library(dplyr)
+```
 
 Part of the fun of being on the web instead of in a Word or PDF doc is that you can use interactive things in your Rmd!
 
