@@ -17,6 +17,7 @@ A tutorial/example on how to use GitHub pages to host R Markdown files as web pa
   * <kbd>Pages</kbd> (under the Code and automation section in the sidebar)
   * Find the dropdown menu in the **Branch** section of the page and select "main" (there's a chance you want to select "master")
     * If you're new to GitHub there's probably only one option to choose, choose that one option that's not "None"
+  * Click the <kbd>Save</kbd> button
 * Wait!
 * Find your website online at:`https://<your-username>.github.io/<your-repo-name/`
   * For example this repo is at https://github.com/AdamSpannbauer/hosting-Rmds-with-GitHub-Pages/
