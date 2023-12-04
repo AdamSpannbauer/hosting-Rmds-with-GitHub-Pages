@@ -6,7 +6,7 @@ output:
   html_document:
     theme: flatly
     toc: true
-    toc_depth: 2
+    toc_depth: 3
     toc_float: true
     includes:
       in_header: "favicon.html"
@@ -52,8 +52,12 @@ knitr::include_url("https://spannbaueradam.shinyapps.io/sql-racer/", height = "5
 
 Using `{r out.width="100%", echo=FALSE}` will set the embed to 100% of its container's width and hide the code that created it.  Eg, the you don't see the embed code for the below example because of `echo=FALSE`.
 
+### Hosting ipynb's on Github
+
+This embedded site has some starter info on using an `.ipynb` for a site instead of an Rmd.
+
 ```{r out.width="100%", echo=FALSE}
-knitr::include_url("https://spannbaueradam.shinyapps.io/sp23bas475attendance/", height = "400px")
+knitr::include_url("https://adamspannbauer.github.io/hosting-ipynbs-with-GitHub-Pages/", height = "400px")
 ```
 
 ## Embed Tableau Public
