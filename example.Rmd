@@ -40,6 +40,49 @@ This is just 1 way to host an Rmd document.  There are other options.  This is j
     * This shows my repo name is **`hosting-Rmds-with-GitHub-Pages`**
   * It's published GitHub pages site can is https://adamspannbauer.github.io/hosting-Rmds-with-GitHub-Pages/
 
+# Embed other pages/projects in an Rmd
+
+## Embed arbitrary websites
+
+Embed other websites with `knitr::include_url()`!  Shiny's an example option where you might have work to show off.
+
+```{r out.width="100%"}
+knitr::include_url("https://spannbaueradam.shinyapps.io/sql-racer/", height="512px")
+```
+
+Using `{r out.width="100%", echo=FALSE}` will set the embed to 100% of its container's width and hide the code that created it.  Eg, the you don't see the embed code for the below example because of `echo=FALSE`.
+
+```{r out.width="100%", echo=FALSE}
+knitr::include_url("https://spannbaueradam.shinyapps.io/sp23bas475attendance/", height="400px")
+```
+
+## Embed Tableau Public
+
+* Find you dashboard on [Tableau Public](https://public.tableau.com/app/discover)
+* Click the share button
+* Click the Copy Link button
+* Paste link into an Rmd chunk using `knitr::include_url()`
+  * Your link should start with `https://public.tableau.com/views`; if it mentions `user` it will fail (this bullet will prolly fall out of date)
+* Update your link so that it shows `?:showVizHome=no&:embed=true` right after the dashboard name
+  * My original URL was: `https://public.tableau.com/views/recreate-test-f23/Dashboard1?:language=en-US&:display_count=n&:origin=viz_share_link`
+  * My usable URL is: `https://public.tableau.com/views/recreate-test-f23/Dashboard1?:showVizHome=no&:embed=true`
+
+The below code is what creates the embedded view.  If you don't want the code visible use `echo=FALSE` (that's what made the second embedded view here).
+
+Note: This dashboard wasn't designed to be so cramped. If it's for an embedded portfolio piece, take some time to readjust things to work nicely.
+
+```{r out.width="100%", echo=FALSE}
+knitr::include_url("https://public.tableau.com/views/recreate-test-f23/Dashboard1?:showVizHome=no&:embed=true", height="400px")
+```
+
+The above was created with:
+
+```
+```{r out.width="100%", echo=FALSE}
+knitr::include_url("https://public.tableau.com/views/recreate-test-f23/Dashboard1?:showVizHome=no&:embed=true", height="400px")
+```
+```
+
 # Make your Rmd more fun!
 
 ## Outside resources
