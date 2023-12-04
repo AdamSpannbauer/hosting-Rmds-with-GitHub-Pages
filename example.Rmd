@@ -47,13 +47,13 @@ This is just 1 way to host an Rmd document.  There are other options.  This is j
 Embed other websites with `knitr::include_url()`!  Shiny's an example option where you might have work to show off.
 
 ```{r out.width="100%"}
-knitr::include_url("https://spannbaueradam.shinyapps.io/sql-racer/", height="512px")
+knitr::include_url("https://spannbaueradam.shinyapps.io/sql-racer/", height = "512px")
 ```
 
 Using `{r out.width="100%", echo=FALSE}` will set the embed to 100% of its container's width and hide the code that created it.  Eg, the you don't see the embed code for the below example because of `echo=FALSE`.
 
 ```{r out.width="100%", echo=FALSE}
-knitr::include_url("https://spannbaueradam.shinyapps.io/sp23bas475attendance/", height="400px")
+knitr::include_url("https://spannbaueradam.shinyapps.io/sp23bas475attendance/", height = "400px")
 ```
 
 ## Embed Tableau Public
@@ -72,14 +72,14 @@ The below code is what creates the embedded view.  If you don't want the code vi
 Note: This dashboard wasn't designed to be so cramped. If it's for an embedded portfolio piece, take some time to readjust things to work nicely.
 
 ```{r out.width="100%", echo=FALSE}
-knitr::include_url("https://public.tableau.com/views/recreate-test-f23/Dashboard1?:showVizHome=no&:embed=true", height="400px")
+knitr::include_url("https://public.tableau.com/views/recreate-test-f23/Dashboard1?:showVizHome=no&:embed=true", height = "400px")
 ```
 
 The above was created with:
 
 ```
 ```{r out.width="100%", echo=FALSE}
-knitr::include_url("https://public.tableau.com/views/recreate-test-f23/Dashboard1?:showVizHome=no&:embed=true", height="400px")
+knitr::include_url("https://public.tableau.com/views/recreate-test-f23/Dashboard1?:showVizHome=no&:embed=true", height = "400px")
 ```
 ```
 
